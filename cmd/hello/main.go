@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 
-	"github.com/yourusername/monorepo-lib/libs/greetings"
-	"github.com/yourusername/monorepo-lib/libs/math"
+	"github.com/phongthien99/monorepo-lib/libs/greetings"
+	"github.com/phongthien99/monorepo-lib/libs/math"
 )
 
 func main() {

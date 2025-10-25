@@ -1,3 +1,3 @@
-module github.com/yourusername/monorepo-lib/libs/math
+module github.com/phongthien99/monorepo-lib/libs/math
 
 go 1.21
