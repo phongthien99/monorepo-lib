@@ -3,8 +3,8 @@
     "publish": false
   },
   "git": {
-    "tagName": "math/v${version}",
-    "tagMatch": "math/v*",
+    "tagName": "libs/math/v${version}",
+    "tagMatch": "libs/math/v*",
     "commitMessage": "chore(math): release v${version}",
     "tagAnnotation": "Release math library v${version}",
     "getLatestTagFromAllRefs": true,

@@ -3,8 +3,8 @@
     "publish": false
   },
   "git": {
-    "tagName": "greetings/v${version}",
-    "tagMatch": "greetings/v*",
+    "tagName": "libs/greetings/v${version}",
+    "tagMatch": "libs/greetings/v*",
     "commitMessage": "chore(greetings): release v${version}",
     "tagAnnotation": "Release greetings library v${version}",
     "getLatestTagFromAllRefs": true,
