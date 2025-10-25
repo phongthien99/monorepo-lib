@@ -1,0 +1,4 @@
+github.com/phongthien99/monorepo-lib/libs/greetings v1.0.0 h1:syqC2RdVQv8A3ceK7OkEwRR1ZJujAZKdfsE8Al6h8ls=
+github.com/phongthien99/monorepo-lib/libs/greetings v1.0.0/go.mod h1:RuxAu4+NL5ahxc9cnpkRoKIrWQKu1v+AVtfoJeYOq3I=
+github.com/phongthien99/monorepo-lib/libs/math v0.0.0-20251025105806-2a787537c892 h1:lnIH7UAqvHDYSoPgSKpzMyO4G6xVu3MH8Dqq1sReEcM=
+github.com/phongthien99/monorepo-lib/libs/math v0.0.0-20251025105806-2a787537c892/go.mod h1:n/6dQ2FvOpRWkGP+WxCrmo2OspB9xcHmQIKd/hcXJCk=

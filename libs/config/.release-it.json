@@ -1,0 +1,51 @@
+{
+  "npm": {
+    "publish": false
+  },
+  "git": {
+    "tagName": "libs/config/v${version}",
+    "tagMatch": "libs/config/v*",
+    "commitMessage": "chore(config): release v${version}",
+    "tagAnnotation": "Release config library v${version}",
+    "getLatestTagFromAllRefs": true,
+    "requireCleanWorkingDir": false,
+    "preset": "angular"
+  },
+  "github": {
+    "release": true,
+    "releaseName": "config v${version}",
+    "releaseNotes": "echo 'See libs/config/CHANGELOG.md for details'"
+  },
+  "hooks": {
+    "before:init": [
+      "echo '🚀 Starting release for config library'",
+      "cd libs/config && go vet ./...",
+      "cd libs/config && go fmt ./..."
+    ],
+    "after:bump": [
+      "git add ./libs/config/go.mod",
+      "git add ./libs/config/CHANGELOG.md"
+    ],
+    "after:git:release": "echo '✅ config v${version} released successfully'"
+  },
+  "plugins": {
+    "@release-it/bumper": {
+      "in": {
+        "file": "./libs/config/go.mod",
+        "type": "text/plain"
+      },
+      "out": {
+        "file": "./libs/config/go.mod",
+        "type": "text/plain"
+      }
+    },
+    "@release-it/conventional-changelog": {
+      "preset": "angular",
+      "infile": "./libs/config/CHANGELOG.md",
+      "header": "# Changelog - Config Library\n\nAll notable changes to the config library will be documented in this file.\n\nThe format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),\nand this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).",
+      "gitRawCommitsOpts": {
+        "path": "./libs/config"
+      }
+    }
+  }
+}
