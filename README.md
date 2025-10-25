@@ -1,6 +1,9 @@
 # Go Workspace Monorepo Example
 
-Đây là một ví dụ về Go workspace với nhiều libraries và một example application.
+Đây là một ví dụ về Go workspace với nhiều libraries và automated release management.
+
+[![Release](https://img.shields.io/badge/release-automated-brightgreen.svg)](RELEASE.md)
+[![Go Version](https://img.shields.io/badge/go-1.21-blue.svg)](https://golang.org/)
 
 ## Cấu trúc project
 
@@ -77,6 +80,47 @@ use (
 3. Không cần sử dụng `replace` directive trong go.mod
 4. Các thay đổi trong libraries được phản ánh ngay lập tức
 
+## Release Management
+
+Project này sử dụng **Release It** để tự động hóa quy trình release cho từng library.
+
+### Quick Start
+
+1. Cài đặt dependencies:
+```bash
+npm install
+```
+
+2. Commit code theo [Conventional Commits](https://www.conventionalcommits.org/):
+```bash
+git commit -m "feat(greetings): add new WelcomeMultiple function"
+```
+
+3. Release library:
+```bash
+# Sử dụng script helper
+./scripts/release.sh greetings patch
+
+# Hoặc sử dụng npm scripts
+npm run release:greetings
+```
+
+### Tính năng
+
+✅ **Automated versioning** - Tự động tăng version theo semantic versioning  
+✅ **Auto-generated changelog** - CHANGELOG.md được sinh tự động  
+✅ **Git tags** - Tạo tags theo format `<library>/vX.Y.Z`  
+✅ **Quality checks** - Tự động chạy tests và lint  
+✅ **Independent releases** - Mỗi library có chu kỳ release riêng
+
+### Hướng dẫn chi tiết
+
+Xem [RELEASE.md](RELEASE.md) để biết thêm chi tiết về:
+- Quy trình release đầy đủ
+- Conventional commits guide
+- CI/CD integration
+- Troubleshooting
+
 ## Thêm library mới
 
 Để thêm một library mới vào workspace:
@@ -89,7 +133,7 @@ mkdir -p libs/newlib
 2. Khởi tạo module
 ```bash
 cd libs/newlib
-go mod init github.com/yourusername/monorepo-lib/libs/newlib
+go mod init github.com/phongthien99/monorepo-lib/libs/newlib
 ```
 
 3. Thêm vào go.work
@@ -97,3 +141,13 @@ go mod init github.com/yourusername/monorepo-lib/libs/newlib
 cd ../..
 go work use ./libs/newlib
 ```
+
+4. Thiết lập release config (xem [RELEASE.md](RELEASE.md#9-thêm-library-mới))
+
+## Contributing
+
+Xem [RELEASE.md](RELEASE.md#4-conventional-commits) để biết cách commit code đúng chuẩn.
+
+## License
+
+MIT

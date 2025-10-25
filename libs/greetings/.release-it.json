@@ -1,0 +1,51 @@
+{
+  "npm": {
+    "publish": false
+  },
+  "git": {
+    "tagName": "greetings/v${version}",
+    "tagMatch": "greetings/v*",
+    "commitMessage": "chore(greetings): release v${version}",
+    "tagAnnotation": "Release greetings library v${version}",
+    "getLatestTagFromAllRefs": true,
+    "requireCleanWorkingDir": false,
+    "preset": "angular"
+  },
+  "github": {
+    "release": true,
+    "releaseName": "greetings v${version}",
+    "releaseNotes": "echo 'See libs/greetings/CHANGELOG.md for details'"
+  },
+  "hooks": {
+    "before:init": [
+      "echo '🚀 Starting release for greetings library'",
+      "cd libs/greetings && go vet ./...",
+      "cd libs/greetings && go fmt ./..."
+    ],
+    "after:bump": [
+      "git add ./libs/greetings/go.mod",
+      "git add ./libs/greetings/CHANGELOG.md"
+    ],
+    "after:git:release": "echo '✅ greetings v${version} released successfully'"
+  },
+  "plugins": {
+    "@release-it/bumper": {
+      "in": {
+        "file": "./libs/greetings/go.mod",
+        "type": "text/plain"
+      },
+      "out": {
+        "file": "./libs/greetings/go.mod",
+        "type": "text/plain"
+      }
+    },
+    "@release-it/conventional-changelog": {
+      "preset": "angular",
+      "infile": "./libs/greetings/CHANGELOG.md",
+      "header": "# Changelog - Greetings Library\n\nAll notable changes to the greetings library will be documented in this file.\n\nThe format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),\nand this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).",
+      "gitRawCommitsOpts": {
+        "path": "./libs/greetings"
+      }
+    }
+  }
+}

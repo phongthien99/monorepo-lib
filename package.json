@@ -1,0 +1,29 @@
+{
+  "name": "monorepo-lib",
+  "version": "1.0.0",
+  "description": "Go workspace monorepo with multiple libraries",
+  "private": true,
+  "scripts": {
+    "release:greetings": "release-it --config ./libs/greetings/.release-it.json",
+    "release:math": "release-it --config ./libs/math/.release-it.json",
+    "release:hello": "release-it --config ./cmd/hello/.release-it.json",
+    "lint:greetings": "cd libs/greetings && go vet ./...",
+    "lint:math": "cd libs/math && go vet ./...",
+    "test:greetings": "cd libs/greetings && go test ./...",
+    "test:math": "cd libs/math && go test ./...",
+    "test:all": "go test ./..."
+  },
+  "devDependencies": {
+    "@release-it/bumper": "^6.0.1",
+    "@release-it/conventional-changelog": "^8.0.2",
+    "release-it": "^17.8.2"
+  },
+  "keywords": [
+    "golang",
+    "monorepo",
+    "workspace",
+    "libraries"
+  ],
+  "author": "phongthien99",
+  "license": "MIT"
+}

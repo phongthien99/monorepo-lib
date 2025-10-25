@@ -1,0 +1,51 @@
+{
+  "npm": {
+    "publish": false
+  },
+  "git": {
+    "tagName": "math/v${version}",
+    "tagMatch": "math/v*",
+    "commitMessage": "chore(math): release v${version}",
+    "tagAnnotation": "Release math library v${version}",
+    "getLatestTagFromAllRefs": true,
+    "requireCleanWorkingDir": false,
+    "preset": "angular"
+  },
+  "github": {
+    "release": true,
+    "releaseName": "math v${version}",
+    "releaseNotes": "echo 'See libs/math/CHANGELOG.md for details'"
+  },
+  "hooks": {
+    "before:init": [
+      "echo '🚀 Starting release for math library'",
+      "cd libs/math && go vet ./...",
+      "cd libs/math && go fmt ./..."
+    ],
+    "after:bump": [
+      "git add ./libs/math/go.mod",
+      "git add ./libs/math/CHANGELOG.md"
+    ],
+    "after:git:release": "echo '✅ math v${version} released successfully'"
+  },
+  "plugins": {
+    "@release-it/bumper": {
+      "in": {
+        "file": "./libs/math/go.mod",
+        "type": "text/plain"
+      },
+      "out": {
+        "file": "./libs/math/go.mod",
+        "type": "text/plain"
+      }
+    },
+    "@release-it/conventional-changelog": {
+      "preset": "angular",
+      "infile": "./libs/math/CHANGELOG.md",
+      "header": "# Changelog - Math Library\n\nAll notable changes to the math library will be documented in this file.\n\nThe format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),\nand this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).",
+      "gitRawCommitsOpts": {
+        "path": "./libs/math"
+      }
+    }
+  }
+}
