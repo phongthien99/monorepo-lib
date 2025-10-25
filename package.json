@@ -6,11 +6,14 @@
   "scripts": {
     "release:greetings": "release-it --config ./libs/greetings/.release-it.json",
     "release:math": "release-it --config ./libs/math/.release-it.json",
+    "release:config": "release-it --config ./libs/config/.release-it.json",
     "release:hello": "release-it --config ./cmd/hello/.release-it.json",
     "lint:greetings": "cd libs/greetings && go vet ./...",
     "lint:math": "cd libs/math && go vet ./...",
+    "lint:config": "cd libs/config && go vet ./...",
     "test:greetings": "cd libs/greetings && go test ./...",
     "test:math": "cd libs/math && go test ./...",
+    "test:config": "cd libs/config && go test ./...",
     "test:all": "go test ./..."
   },
   "devDependencies": {
