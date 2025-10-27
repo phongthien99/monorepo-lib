@@ -4,5 +4,6 @@ use (
 	./cmd/hello
 	./libs/config
 	./libs/greetings
+	./libs/log
 	./libs/math
 )

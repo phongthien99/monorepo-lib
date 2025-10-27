@@ -1,0 +1,281 @@
+package zap
+
+import (
+	"github.com/phongthien99/monorepo-lib/libs/log/core"
+	"go.uber.org/zap"
+	"go.uber.org/zap/zapcore"
+)
+
+// zapAdapter wraps zap.SugaredLogger to implement our ISugaredLogger interface
+type zapAdapter struct {
+	logger *zap.SugaredLogger
+	level  core.Level
+}
+
+// NewZapAdapter creates a new adapter that wraps zap.SugaredLogger
+func NewZapAdapter(zapLogger *zap.SugaredLogger, level core.Level) core.ISugaredLogger {
+	return &zapAdapter{
+		logger: zapLogger,
+		level:  level,
+	}
+}
+
+// NewZapAdapterFromLogger creates a new adapter from zap.Logger
+func NewZapAdapterFromLogger(zapLogger *zap.Logger, level core.Level) core.ISugaredLogger {
+	return &zapAdapter{
+		logger: zapLogger.Sugar(),
+		level:  level,
+	}
+}
+
+// IBasicLogger implementation
+func (z *zapAdapter) Debug(args ...any) {
+	z.logger.Debug(args...)
+}
+
+func (z *zapAdapter) Info(args ...any) {
+	z.logger.Info(args...)
+}
+
+func (z *zapAdapter) Warn(args ...any) {
+	z.logger.Warn(args...)
+}
+
+func (z *zapAdapter) Error(args ...any) {
+	z.logger.Error(args...)
+}
+
+func (z *zapAdapter) DPanic(args ...any) {
+	z.logger.DPanic(args...)
+}
+
+func (z *zapAdapter) Panic(args ...any) {
+	z.logger.Panic(args...)
+}
+
+func (z *zapAdapter) Fatal(args ...any) {
+	z.logger.Fatal(args...)
+}
+
+// IFormattedLogger implementation
+func (z *zapAdapter) Debugf(template string, args ...any) {
+	z.logger.Debugf(template, args...)
+}
+
+func (z *zapAdapter) Infof(template string, args ...any) {
+	z.logger.Infof(template, args...)
+}
+
+func (z *zapAdapter) Warnf(template string, args ...any) {
+	z.logger.Warnf(template, args...)
+}
+
+func (z *zapAdapter) Errorf(template string, args ...any) {
+	z.logger.Errorf(template, args...)
+}
+
+func (z *zapAdapter) DPanicf(template string, args ...any) {
+	z.logger.DPanicf(template, args...)
+}
+
+func (z *zapAdapter) Panicf(template string, args ...any) {
+	z.logger.Panicf(template, args...)
+}
+
+func (z *zapAdapter) Fatalf(template string, args ...any) {
+	z.logger.Fatalf(template, args...)
+}
+
+func (z *zapAdapter) Logf(level core.Level, template string, args ...any) {
+	switch level {
+	case core.DebugLevel:
+		z.logger.Debugf(template, args...)
+	case core.InfoLevel:
+		z.logger.Infof(template, args...)
+	case core.WarnLevel:
+		z.logger.Warnf(template, args...)
+	case core.ErrorLevel:
+		z.logger.Errorf(template, args...)
+	case core.DPanicLevel:
+		z.logger.DPanicf(template, args...)
+	case core.PanicLevel:
+		z.logger.Panicf(template, args...)
+	case core.FatalLevel:
+		z.logger.Fatalf(template, args...)
+	}
+}
+
+// IStructuredLogger implementation
+func (z *zapAdapter) Debugw(msg string, keysAndValues ...any) {
+	z.logger.Debugw(msg, keysAndValues...)
+}
+
+func (z *zapAdapter) Infow(msg string, keysAndValues ...any) {
+	z.logger.Infow(msg, keysAndValues...)
+}
+
+func (z *zapAdapter) Warnw(msg string, keysAndValues ...any) {
+	z.logger.Warnw(msg, keysAndValues...)
+}
+
+func (z *zapAdapter) Errorw(msg string, keysAndValues ...any) {
+	z.logger.Errorw(msg, keysAndValues...)
+}
+
+func (z *zapAdapter) DPanicw(msg string, keysAndValues ...any) {
+	z.logger.DPanicw(msg, keysAndValues...)
+}
+
+func (z *zapAdapter) Panicw(msg string, keysAndValues ...any) {
+	z.logger.Panicw(msg, keysAndValues...)
+}
+
+func (z *zapAdapter) Fatalw(msg string, keysAndValues ...any) {
+	z.logger.Fatalw(msg, keysAndValues...)
+}
+
+func (z *zapAdapter) Logw(level core.Level, msg string, keysAndValues ...any) {
+	switch level {
+	case core.DebugLevel:
+		z.logger.Debugw(msg, keysAndValues...)
+	case core.InfoLevel:
+		z.logger.Infow(msg, keysAndValues...)
+	case core.WarnLevel:
+		z.logger.Warnw(msg, keysAndValues...)
+	case core.ErrorLevel:
+		z.logger.Errorw(msg, keysAndValues...)
+	case core.DPanicLevel:
+		z.logger.DPanicw(msg, keysAndValues...)
+	case core.PanicLevel:
+		z.logger.Panicw(msg, keysAndValues...)
+	case core.FatalLevel:
+		z.logger.Fatalw(msg, keysAndValues...)
+	}
+}
+
+// ILineLogger implementation
+func (z *zapAdapter) Debugln(args ...any) {
+	z.logger.Debugln(args...)
+}
+
+func (z *zapAdapter) Infoln(args ...any) {
+	z.logger.Infoln(args...)
+}
+
+func (z *zapAdapter) Warnln(args ...any) {
+	z.logger.Warnln(args...)
+}
+
+func (z *zapAdapter) Errorln(args ...any) {
+	z.logger.Errorln(args...)
+}
+
+func (z *zapAdapter) DPanicln(args ...any) {
+	z.logger.DPanicln(args...)
+}
+
+func (z *zapAdapter) Panicln(args ...any) {
+	z.logger.Panicln(args...)
+}
+
+func (z *zapAdapter) Fatalln(args ...any) {
+	z.logger.Fatalln(args...)
+}
+
+func (z *zapAdapter) Logln(level core.Level, args ...any) {
+	switch level {
+	case core.DebugLevel:
+		z.logger.Debugln(args...)
+	case core.InfoLevel:
+		z.logger.Infoln(args...)
+	case core.WarnLevel:
+		z.logger.Warnln(args...)
+	case core.ErrorLevel:
+		z.logger.Errorln(args...)
+	case core.DPanicLevel:
+		z.logger.DPanicln(args...)
+	case core.PanicLevel:
+		z.logger.Panicln(args...)
+	case core.FatalLevel:
+		z.logger.Fatalln(args...)
+	}
+}
+
+// IContextualLogger implementation
+func (z *zapAdapter) With(args ...any) core.IContextualLogger {
+	return &zapAdapter{
+		logger: z.logger.With(args...),
+		level:  z.level,
+	}
+}
+
+func (z *zapAdapter) WithLazy(args ...any) core.IContextualLogger {
+	return &zapAdapter{
+		logger: z.logger.WithLazy(args...),
+		level:  z.level,
+	}
+}
+
+func (z *zapAdapter) Named(name string) core.IContextualLogger {
+	return &zapAdapter{
+		logger: z.logger.Named(name),
+		level:  z.level,
+	}
+}
+
+// ILoggerControl implementation
+func (z *zapAdapter) Desugar() any {
+	return z.logger.Desugar()
+}
+
+func (z *zapAdapter) Level() core.Level {
+	return z.level
+}
+
+func (z *zapAdapter) Sync() error {
+	return z.logger.Sync()
+}
+
+// coreToZapLevel converts our core.Level to zapcore.Level
+func coreToZapLevel(level core.Level) zapcore.Level {
+	switch level {
+	case core.DebugLevel:
+		return zapcore.DebugLevel
+	case core.InfoLevel:
+		return zapcore.InfoLevel
+	case core.WarnLevel:
+		return zapcore.WarnLevel
+	case core.ErrorLevel:
+		return zapcore.ErrorLevel
+	case core.DPanicLevel:
+		return zapcore.DPanicLevel
+	case core.PanicLevel:
+		return zapcore.PanicLevel
+	case core.FatalLevel:
+		return zapcore.FatalLevel
+	default:
+		return zapcore.InfoLevel
+	}
+}
+
+// zapToCoreLevel converts zapcore.Level to our core.Level
+func zapToCoreLevel(level zapcore.Level) core.Level {
+	switch level {
+	case zapcore.DebugLevel:
+		return core.DebugLevel
+	case zapcore.InfoLevel:
+		return core.InfoLevel
+	case zapcore.WarnLevel:
+		return core.WarnLevel
+	case zapcore.ErrorLevel:
+		return core.ErrorLevel
+	case zapcore.DPanicLevel:
+		return core.DPanicLevel
+	case zapcore.PanicLevel:
+		return core.PanicLevel
+	case zapcore.FatalLevel:
+		return core.FatalLevel
+	default:
+		return core.InfoLevel
+	}
+}
